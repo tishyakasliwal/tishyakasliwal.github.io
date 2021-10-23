@@ -1,17 +1,6 @@
 
 <html>
-<!---
-    <form action="https://www.google.com/maps/embed/v1/directions?key=AIzaSyDtmwf9U6VVRuSqS2aYz6ymhdJKHq9Fl3w&origin=Oslo+Norway
-    &destination=Telemark+Norway" method="get" target="_blank">
-        <label for="saddr">Enter your origin</label>
-        <input type="text" name="saddr" />
-        <label for="maddr">Enter your destination</label>
-        
-        <input type="text" name="maddr" />
-        <input type="hidden" name="daddr" value="maddr" />
-        <input type="submit" value="Get directions" />
-    </form>
-
+    <script type='text/python' src='config.py'></script>
     -->
     {% for key,value in form_data.items() %}
     <h4> {{key}}</h4>
@@ -30,15 +19,15 @@
 
     {% endif %}
 -->
+<!--
     <div class="map-responsive">
         <iframe
          width="750"
          height="550"
          frameborder="0" style="border:0"
-         src="https://www.google.com/maps/embed/v1/directions?key=AIzaSyDtmwf9U6VVRuSqS2aYz6ymhdJKHq9Fl3w&origin={value}&destination={value}" allowfullscreen>
+         src="https://www.google.com/maps/embed/v1/directions?key="+{{api_key}}+"&origin="+{{value}}+"&destination="+{{value} allowfullscreen>
          </iframe>
     </div>
-    
+  --> 
 
  </html>
- http://maps.google.com/maps

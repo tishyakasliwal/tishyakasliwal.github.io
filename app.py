@@ -2,11 +2,12 @@ from flask import Flask, request, render_template, url_for, redirect
 from datetime import datetime
 import json
 import requests
+import config 
 
 '''
 #receives directions for multiple routes
 params = {
-'key': 'AIzaSyDtmwf9U6VVRuSqS2aYz6ymhdJKHq9Fl3w',
+'key':  config.API_KEY,
 'origin': 'Sector+60+Noida+India',
 'destination': 'Sector+21+Noida+India','alternatives':'true'
 }
@@ -19,7 +20,7 @@ result = json.loads(response.text)
 '''
 #reverse geocode
 params = {
-'key': 'AIzaSyDtmwf9U6VVRuSqS2aYz6ymhdJKHq9Fl3w',
+'key':  config.API_KEY,
 'latlng': '28.6058509,77.36835239999999'
 }
 url ='https://maps.googleapis.com/maps/api/geocode/json?'
@@ -56,10 +57,10 @@ def data():
         x=x.replace(' ','+')
         y=y.replace(' ','+')
         print(x,y)
-
+        api_key= config.API_KEY
         #receives directions for multiple routes
         params = {
-        'key': 'AIzaSyDtmwf9U6VVRuSqS2aYz6ymhdJKHq9Fl3w',
+        'key': config.API_KEY,
         'origin': x,
         'destination': y,'alternatives':'true'
         }
@@ -108,7 +109,7 @@ def data():
 
                     #reverse geocode
                     params = {
-                    'key': 'AIzaSyDtmwf9U6VVRuSqS2aYz6ymhdJKHq9Fl3w',
+                    'key':  config.API_KEY,
                     'latlng': str(lat)+','+ str(lng)
                     }
                     url ='https://maps.googleapis.com/maps/api/geocode/json?'
@@ -128,7 +129,7 @@ def data():
 
                  
 
-        return render_template('result.html',form_data = form_data,l=l,forone=forone)
+        return render_template('result.html',form_data = form_data,l=l,forone=forone,api_key=api_key)
  
   
 
