@@ -1,33 +1,36 @@
 
 <html>
-    <script type='text/python' src='config.py'></script>
-    -->
+
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <div class="center-on-page">  <h1>SafeWay</h1> 
+
     {% for key,value in form_data.items() %}
     <h4> {{key}}</h4>
-    <p> {{value}}</p>
+    <h4> {{value}}</h4>
     {% endfor %}
 
     {% if l==1 %}
     <p> There is only one route via {{forone}} </p>
     {% endif %}
-<!--
+
     {% if l!=1 %}
 
 
-
+    <p> The safest route is via {{formultiple}}</p>
 
 
     {% endif %}
--->
-<!--
+
+
     <div class="map-responsive">
         <iframe
          width="750"
          height="550"
          frameborder="0" style="border:0"
-         src="https://www.google.com/maps/embed/v1/directions?key="+{{api_key}}+"&origin="+{{value}}+"&destination="+{{value} allowfullscreen>
+         src={{html_map}} allowfullscreen>
          </iframe>
     </div>
-  --> 
+
 
  </html>

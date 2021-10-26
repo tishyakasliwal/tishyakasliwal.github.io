@@ -3,6 +3,8 @@ from datetime import datetime
 import json
 import requests
 import config 
+import csv 
+import pandas as pd
 
 '''
 #receives directions for multiple routes
@@ -56,7 +58,7 @@ def data():
     
         x=x.replace(' ','+')
         y=y.replace(' ','+')
-        print(x,y)
+        
         api_key= config.API_KEY
         #receives directions for multiple routes
         params = {
@@ -70,9 +72,15 @@ def data():
         print(response.text)
         result = json.loads(response.text)
 
-        print('123')
+        #url for embedding map
+
+        map="https://www.google.com/maps/embed/v1/directions?key={}&origin={}&destination={}"
+        html_map=map.format(api_key,x,y)
+        print(html_map)
+
+       
         routes=result.get('routes')
-        print(routes)
+        #print(routes)
         l=len(routes)
         forone=routes[0].get('summary')
 
@@ -84,6 +92,7 @@ def data():
 
         #print(routes[0][2].get('steps'))
         if l!=1:
+            safetylevels=[]
             for i in range(l):
                 legs=routes[i].get('legs')
                 print('1')
@@ -126,28 +135,37 @@ def data():
                     
                     l1.append(l[2]['long_name'])
                 print(l1)
+                s=[]
+                col_list=['Sector ','Crime ','Population','Crime Level']
+                r=pd.read_csv("Noida data.csv",usecols=col_list)
+               
+                for x in l1:
+                    for i in r['Sector ']:
+                        if x== "Sector "+ str(i):
+
+                            
+                            m=r.loc[r['Sector '] == i, 'Crime Level'].iloc[0]
+                            
+                            break
+
+                            
+                    
+                    s.append(m)
+                avg=sum(s)/len(s)
+                safetylevels.append(avg)
+            
+            minimum=min(safetylevels)
+            print(safetylevels)
+            routeindex=safetylevels.index(minimum)
+            print("The safest route is via",routes[routeindex].get('summary'))
+            formultiple=routes[routeindex].get('summary')
 
                  
 
-        return render_template('result.html',form_data = form_data,l=l,forone=forone,api_key=api_key)
+        return render_template('result.html',form_data = form_data,l=l,forone=forone,formultiple=formultiple,html_map=html_map)
  
   
 
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)
-
-'''
-@app.route('/', methods=['POST'])
-def my_form_post():
-    Variable = request.form['variable']
-    return render_template('style.html')
-'''
-
-'''
-@app.route('/map')
-def index():
-    return render_template('result.html')
-'''
-   
-
