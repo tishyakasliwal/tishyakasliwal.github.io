@@ -41,13 +41,6 @@ itsdangerous==2.0.1
 jedi==0.18.0
 Jinja2==3.0.1
 jsonschema==4.1.0
-jupyter-client==7.0.6
-jupyter-console==6.4.0
-jupyter-core==4.8.1
-jupyterlab-pygments==0.1.2
-jupyterlab-widgets==1.0.2
-keras-nightly==2.5.0.dev2021032900
-Keras-Preprocessing==1.1.2
 lazy-object-proxy==1.6.0
 llvmlite==0.36.0
 lxml==4.6.3
