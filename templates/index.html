@@ -4,7 +4,28 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 <div class="center-on-page">  <h1>SafeWay</h1>
+<body>
 
+<h2>SafeWay is an application to find the safest route from point A to point B.<br> Currently this is only applicable for routes within the city of Noida.</h2>
+<h2>For example:<br> Origin : Apollo Hospital Noida <br> Destination : Sector 21 Noida</h2>
+
+<style>
+input[type=submit] {
+    background-color: #e7e7e7;
+    border: none;
+    color: black;
+    padding: 15px 32px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+input[type=submit]:hover {background-color:#555555}
+
+input[type=submit]:active {
+  background-color: #555555;
+  transform: translateY(4px);
+}
+</style>
 
 <form action="/data" method = "POST">
     <p>Origin <input type = "text" name = "Origin" /></p>
@@ -12,6 +33,9 @@
     
     <p><input type = "submit" value = "Submit" /></p>
 </form>
+
+</body>
+
 </html>
 
 

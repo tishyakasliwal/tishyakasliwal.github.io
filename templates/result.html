@@ -6,27 +6,23 @@
     <div class="center-on-page">  <h1>SafeWay</h1> 
 
     {% for key,value in form_data.items() %}
-    <h4> {{key}}</h4>
-    <h4> {{value}}</h4>
+    <!--<h2> {{key}}</h2>
+    <h2> {{value}}</h2> -->
     {% endfor %}
 
     {% if l==1 %}
-    <p> There is only one route via {{forone}} </p>
+    <h2> There is only one route via {{forone}}. </h2>
     {% endif %}
 
     {% if l!=1 %}
-
-
-    <p> The safest route is via {{formultiple}}</p>
-
-
+    <h2> The safest route is via {{formultiple}}</h2>
     {% endif %}
 
-
+    <h2> Click on 'More Options' on the map to view live directions.</h2>
     <div class="map-responsive">
         <iframe
-         width="750"
-         height="550"
+         width="650"
+         height="450"
          frameborder="0" style="border:0"
          src={{html_map}} allowfullscreen>
          </iframe>

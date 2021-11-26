@@ -52,7 +52,7 @@ def data():
         return f"The URL /data is accessed directly. Try going to '/form' to submit form"
     if request.method == 'POST':
         form_data = request.form
-        print(form_data)
+        #print(form_data)
         x=form_data.get('Origin')
         y=form_data.get('Destination')
     
@@ -68,15 +68,15 @@ def data():
         }
         url ='https://maps.googleapis.com/maps/api/directions/json?'
         response = requests.get(url,params)
-        print(response.status_code == 200)
-        print(response.text)
+        #print(response.status_code == 200)
+        #print(response.text)
         result = json.loads(response.text)
 
         #url for embedding map
 
         map="https://www.google.com/maps/embed/v1/directions?key={}&origin={}&destination={}"
         html_map=map.format(api_key,x,y)
-        print(html_map)
+        #print(html_map)
 
        
         routes=result.get('routes')
@@ -84,7 +84,7 @@ def data():
         l=len(routes)
         forone=routes[0].get('summary')
 
-        print(l)
+        #print(l)
 
         if l==1:
             print("There is only one route available via",routes[0].get('summary'))
@@ -95,13 +95,13 @@ def data():
             safetylevels=[]
             for i in range(l):
                 legs=routes[i].get('legs')
-                print('1')
+                #print('1')
                 print(legs)
-                print('2')
+                #print('2')
                 steps = legs[0].get('steps')
-                print('3')
+                #print('3')
                 print(steps)
-                (print('4'))
+                #(print('4'))
                 
 
                 l1=[]
@@ -134,7 +134,7 @@ def data():
                         break
                     
                     l1.append(l[2]['long_name'])
-                print(l1)
+                #print(l1)
                 s=[]
                 col_list=['Sector ','Crime ','Population','Crime Level']
                 r=pd.read_csv("Noida data.csv",usecols=col_list)
